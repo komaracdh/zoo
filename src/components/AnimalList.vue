@@ -3,6 +3,7 @@
    <li v-for="(animal, index) in animals" :key="index" >
      {{animal.type}}  {{animal.name}}  {{animal.dateOfBirth ? animal.dateOfBirth : "Nepoznat"}}
     <button @click="deleteAnimal(index)" > Remove animal </button>
+    <button @click="moveToTop(index)"> Move to top </button>
    </li>
  </ul>
 </template>
@@ -24,6 +25,11 @@ data(){
 methods: {
   deleteAnimal(index){
     this.animals.splice(index,1)
+  },
+  moveToTop(index){
+let  animalsCopy = this.animals[index]
+this.animals.splice(index,1)
+this.animals.unshift(animalsCopy)
   }
 }
 }
